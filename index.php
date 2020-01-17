@@ -33,12 +33,26 @@
             }
             return $result;
         }
-        
+        public function searchCard($position, $card){
+            if($position >= count($this->cards)){
+                return  "There is no such card in the deck";
+            }
+            if($card == $this->cards[$position]){
+                return $position;
+            }else{
+                return $this->searchCard(++$position, $card);
+            }
+            
+        }
     }
 
     //Main Code 
     $deck = new Deck();
-    
+    echo $deck->searchCard(0, new Card('Spade', 1))."\n";
+    echo $deck->searchCard(0, new Card('Diamond', 1))."\n";
+    echo $deck->searchCard(0, new Card('Spade', 7))."\n";
+    echo $deck->searchCard(0, new Card('Heart', 12))."\n";
+    echo $deck->searchCard(0, new Card('Diamond', 12))."\n";
     
     
 
